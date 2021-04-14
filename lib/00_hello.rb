@@ -2,45 +2,43 @@
 #Code une méthode say_hello qui va dire bonjour quand on l'exécute
 
 
-
-def init()
-    say_hello(nil)
+def init
+    puts say_hello(nil)
+    user_input = gets.chomp.to_s
+    confirmation(user_input)
 end
 
-def say_hello(first_name)
-
-    if first_name == nil
-        puts "Bonjour"
-        user_input = gets.chomp.to_s
-        politesse(user_input)
-    elsif first_name != nil
-        politesse(first_name)
+#dit bonjour
+def say_hello(r)
+  
+    if r == nil
+        return "Bonjour"
     else
-        politesse
+        return "Bonjour,#{r} " 
     end
 end
 
-def politesse(a)
-name = ""
-    if a.upcase == "BONJOUR" || a.downcase == "bonjour"
-        
-        puts "quel est ton prenom ?"
-        name = get_first_name()
-    elsif a.upcase != "BONJOUR" || a.downcase != "bonjour"
-        say_hello(a)
+def confirmation(input)
+    if input.upcase == "BONJOUR" || input.downcase == "bonjour"
+        step="done"
+        user_name = ask_first_name(step)
+        if user_name != ""
+
+           puts say_hello(user_name)
+        end
     else
-        puts "jvais te niquer ta mere"
+        puts "Ta pas dit bonjours , jvait te niquer ta mere"
     end
-
-    if name != ""
-        puts "Bonjour, #{name} !"
-    end
-
 end
 
-def get_first_name()
-    first_name = gets.chomp.to_s
-    return first_name
+
+def ask_first_name(str)
+    user_first_name = nil
+    if str == "done"
+        puts "Quel est ton prenom ?"
+        user_first_name = gets.chomp.to_s
+        return user_first_name
+    end
 end
 
-init()
+init
